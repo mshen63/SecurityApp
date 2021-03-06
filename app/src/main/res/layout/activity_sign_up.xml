@@ -4,9 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sign_up_background"
+    android:background="@drawable/general_background"
     tools:context=".SignUpActivity">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="176dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginRight="116dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/sign_up_title"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText_name"
@@ -19,52 +48,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="316dp"
+        android:layout_marginRight="316dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/prompt_email"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editText_email"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
-        android:layout_marginTop="412dp"
+        android:layout_marginTop="300dp"
         android:background="@drawable/text_field_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText_username"
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="308dp"
-        android:background="@drawable/text_field_background"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="368dp"
+        android:layout_marginEnd="276dp"
+        android:layout_marginRight="276dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/editText_password"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText_password"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="516dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="396dp"
         android:background="@drawable/text_field_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        />
-
-    <Button
+    <ImageButton
         android:id="@+id/button_main"
 
         android:layout_width="wrap_content"
 
         android:layout_height="48dp"
-        android:layout_marginStart="161dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginTop="584dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginRight="162dp"
+        android:layout_marginTop="488dp"
+        android:layout_marginEnd="252dp"
+        android:layout_marginRight="252dp"
         android:background="@color/transparent"
         android:clickable="true"
         android:gravity="center"
@@ -72,8 +113,6 @@
         android:src="@drawable/sign_up_button"
         android:text="@string/button_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

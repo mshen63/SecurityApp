@@ -22,18 +22,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
-        android:id="@+id/welcome_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginRight="144dp"
+        android:fontFamily="@font/raleway_light"
+        android:text="@string/welcome"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toEndOf="@+id/profileButton"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <ImageButton
         android:id="@+id/button_help"
@@ -57,15 +58,20 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <Button
-        android:id="@+id/button_sign_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onSignOut"
-        android:text="Sign Out"
+    <ImageButton
+        android:id="@+id/signOutButton"
+        android:layout_width="108dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/transparent"
+        android:clickable="true"
+        android:gravity="center"
+        android:scaleType="centerInside"
+        android:src="@drawable/sign_out_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
