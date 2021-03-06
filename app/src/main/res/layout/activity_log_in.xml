@@ -4,14 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/security_app_background"
-    tools:context=".MainActivity">
+    android:background="@drawable/log_in_background"
+    tools:context=".LogIn">
+
+
+
+
 
 
 
 
     <ImageButton
-        android:id="@+id/button_main"
+        android:id="@+id/button_log_in"
+
+        android:onClick="LogInActivity"
 
         android:layout_width="wrap_content"
         android:layout_height="48dp"
@@ -26,35 +32,30 @@
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-        android:onClick="launchLogInActivity"
-        />
-
-
-    <ImageButton
-        android:id="@+id/button_sign_up"
-
-        android:onClick="launchSignUpActivity"
+    <EditText
+        android:id="@+id/editText_password"
 
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="161dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginTop="492dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginRight="162dp"
-        android:background="@color/transparent"
-        android:clickable="true"
-        android:gravity="center"
-        android:src="@drawable/sign_up_button"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="312dp"
+        android:background="@drawable/text_field_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
+    <EditText
+        android:id="@+id/editText_username"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="208dp"
+        android:background="@drawable/text_field_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

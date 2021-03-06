@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,17 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final String EXTRA_MESSAGE="com.example.android.twoactivities.extra.MESSAGE";
 
-    private EditText etEmail;
-    private EditText etPassword;
-    Button btnLogin;
-    Button btnRegister;
 
-    private FirebaseAuth.AuthStateListener authStateListener;
-    ProgressBar progressBar;
 
     public static final int TEXT_REQUEST=1;
-
-    FirebaseAuth firebaseAuth;
 
 
 
@@ -44,38 +37,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        etEmail =(EditText)findViewById(R.id.editText_username);
-        etPassword = (EditText)findViewById(R.id.editText_password);
-        btnLogin = (Button)findViewById(R.id.button_main);
-        btnRegister = (Button)findViewById(R.id.button_sign_up);
 
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null){
-                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    Intent home = new Intent(MainActivity.this, SecondActivity.class);
-                    startActivity(home);
-                } else{
-                    Toast.makeText(MainActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-       // progressBar = (ProgressBar)findViewById(R.id.progressLog);
-        //mReplyHeadTextView=findViewById(R.id.text_header_reply);
-        //mReplyTextView=findViewById(R.id.text_message_reply);
-        /*if (savedInstanceState!=null){
-            boolean isVisible = savedInstanceState.getBoolean("reply_visible");
-            if (isVisible){
-                mReplyHeadTextView.setVisibility((View.VISIBLE));
-                mReplyTextView.setText(savedInstanceState.getString("reply_text"));
-                mReplyTextView.setVisibility(View.VISIBLE);
-            }
-        }*/
+
+
         Log.d(LOG_TAG, "-------");
         Log.d(LOG_TAG, "onCreate");
 
@@ -103,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
     public void onStop(){
         super.onStop();
         Log.d(LOG_TAG, "onStop");
-        if (authStateListener != null){
-            firebaseAuth.removeAuthStateListener(authStateListener);
-        }
     }
 
 
@@ -122,34 +84,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "onStart");
     }
 
-    public void launchSecondActivity(View view) {
+    public void launchLogInActivity(View view) {
 
-
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-        if (email.isEmpty()){
-            etEmail.setError("Please enter a valid Email Address!");
-            etEmail.requestFocus();
-        } else if(password.isEmpty()){
-            etPassword.setError("Please enter your password!");
-            etPassword.requestFocus();
-        } else if (email.isEmpty() && password.isEmpty()){
-            Toast.makeText(MainActivity.this, "Please enter a valid email address and password!", Toast.LENGTH_SHORT).show();
-        } else if (!(email.isEmpty() && !password.isEmpty())){
-            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (!task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    } else{
-                        Intent dashboard = new Intent(MainActivity.this, SecondActivity.class);
-                        startActivity(dashboard);
-                    }
-                }
-            });
-        } else{
-            Toast.makeText(MainActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
-        }
+        Log.d(LOG_TAG, "Button clicked!");
+        Intent login=new Intent(this, LogIn.class);
+        startActivity(login);
     }
 
 
@@ -159,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(signup);
         // startActivityForResult(intent, TEXT_REQUEST);
     }
+
+
 
 
 
