@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.CompoundButton;
 
@@ -30,7 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SecondActivity extends AppCompatActivity {
 
-    Button signOut;
+    ImageButton signOut;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
     TextView username;
@@ -91,7 +92,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         //mReply=findViewById(R.id.editText_second);
-        signOut = (Button)findViewById(R.id.button_sign_out);
+        signOut = findViewById(R.id.button_help);
         auth = FirebaseAuth.getInstance();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = (TextView) findViewById(R.id.welcome_message);
