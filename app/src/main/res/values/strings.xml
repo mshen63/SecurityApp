@@ -1,23 +1,5 @@
 <resources>
-    <string name="app_name">Two Activities</string>
-    <string name="button_main">Log In</string>
-    <string name="button_sign_up">Sign Up</string>
-    <string name="activity2_name">Second Activity</string>
-    <string name="text_header">Message Receieved</string>
-    <string name="editText_username">Username</string>
-    <string name="editText_password">Password</string>
-
-    <string name="button_second">Reply</string>
-    <string name="editText_second">Enter Your Reply Here</string>
-
-    <string name="text_header_reply">Reply Received</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="app_name">SecurityCalling</string>
+    <string name="channel_name">Channel1</string>
+    <string name="channel_description">Incoming calls</string>
 </resources>
