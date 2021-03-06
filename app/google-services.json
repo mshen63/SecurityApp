@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1002243920515",
+    "project_id": "security-app-ec1c8",
+    "storage_bucket": "security-app-ec1c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002243920515:android:89b83ccf68e4ebffe641b6",
+        "android_client_info": {
+          "package_name": "com.example.android.twoactivities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002243920515-o0v3nmidc1sgjk4s9m86102degde9ull.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlWDb1sqT8aTRPrRyRmwBTmznv6bmPLD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002243920515-o0v3nmidc1sgjk4s9m86102degde9ull.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
