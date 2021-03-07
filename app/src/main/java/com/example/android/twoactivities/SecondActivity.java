@@ -264,7 +264,7 @@ public class SecondActivity extends AppCompatActivity implements LocationListene
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         String name = user.getDisplayName();
-
+                        Toast.makeText(SecondActivity.this, name, Toast.LENGTH_SHORT).show();
                         DocumentReference user_reference = db.collection("user_collection").document(name);
                         user_reference
                                 .update("location", geoPoint)
