@@ -25,12 +25,27 @@ import android.widget.ProgressBar;
 
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+
 
 
 //import com.example.android.twoactivities.model.user;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.AuthResult;
@@ -44,6 +59,11 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -118,6 +138,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void SignUserUp(View view) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         final String email = emails.getText().toString().trim();
         String password = passwords.getText().toString().trim();
         final String name = names.getText().toString().trim();
@@ -138,6 +160,32 @@ public class SignUpActivity extends AppCompatActivity {
                 usernames.requestFocus();
             }
         } else if (!email.isEmpty()&& !password.isEmpty() && !name.isEmpty() && !username.isEmpty()){
+
+
+            Map<String, Object> user = new HashMap<>();
+            user.put("name", name);
+            user.put("email", email);
+            user.put("password", password);
+            user.put("id",email+"2");
+
+// Add a new document with a generated ID
+            db.collection("users_collection")
+                    .add(user)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+
+
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
