@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TwoActivities">
         <activity android:name=".LogIn"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyClK2Qxit3ep0bjGok_rKBtLH3cBNwiM2o" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
@@ -24,7 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.twoactivities.MainActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MapsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
