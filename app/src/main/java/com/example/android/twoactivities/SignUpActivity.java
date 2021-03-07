@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import android.content.Intent;
@@ -80,11 +81,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     private EditText names;
 
-    Button btnRegister;
+    ImageButton btnRegister;
 
     FirebaseAuth firebaseAuth;
 
-    Button loginBtn;
 
     private static final String LOG_TAG = SignUpActivity.class.getSimpleName();
 
@@ -94,7 +94,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         firebaseAuth = FirebaseAuth.getInstance();
         names = (EditText)findViewById(R.id.editText_name);
-        usernames = (EditText)findViewById(R.id.editText_username);
         emails = (EditText)findViewById(R.id.editText_email);
         passwords = (EditText)findViewById(R.id.editText_password);
 
@@ -143,9 +142,8 @@ public class SignUpActivity extends AppCompatActivity {
         final String email = emails.getText().toString().trim();
         String password = passwords.getText().toString().trim();
         final String name = names.getText().toString().trim();
-        final String username = usernames.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty() || name.isEmpty() || username.isEmpty()){
+        if (email.isEmpty() || password.isEmpty() || name.isEmpty()){
             Toast.makeText(SignUpActivity.this, "Fields are empty! Please enter all your information", Toast.LENGTH_SHORT).show();
             if (email.isEmpty()){
                 emails.requestFocus();
@@ -156,33 +154,32 @@ public class SignUpActivity extends AppCompatActivity {
             if(name.isEmpty()){
                 names.requestFocus();
             }
-            if(username.isEmpty()){
-                usernames.requestFocus();
-            }
-        } else if (!email.isEmpty()&& !password.isEmpty() && !name.isEmpty() && !username.isEmpty()){
+
+        } else if (!email.isEmpty()&& !password.isEmpty() && !name.isEmpty() ){
 
 
             Map<String, Object> user = new HashMap<>();
             user.put("name", name);
             user.put("email", email);
             user.put("password", password);
-            user.put("id",email+"2");
 
 // Add a new document with a generated ID
-            db.collection("users_collection")
+            db.collection("user_collection")
                     .add(user)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-
+                            Toast.makeText(SignUpActivity.this,"DBYes!", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
+                            Toast.makeText(SignUpActivity.this,"DBNo!", Toast.LENGTH_SHORT).show();
                         }
-                    });
+
+                        });
+
 
 
 

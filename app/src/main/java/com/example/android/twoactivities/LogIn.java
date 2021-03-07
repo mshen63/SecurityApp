@@ -23,14 +23,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LogIn extends AppCompatActivity {
     private static final String LOG_TAG = LogIn.class.getSimpleName();
-    public static final String EXTRA_MESSAGE="com.example.android.twoactivities.extra.MESSAGE";
 
-    private EditText etEmail;
-    private EditText etPassword;
+    EditText etEmail;
+    EditText etPassword;
     ImageButton btnLogin;
 
-    private FirebaseAuth.AuthStateListener authStateListener;
-
+    FirebaseAuth.AuthStateListener authStateListener;
 
     FirebaseAuth firebaseAuth;
 
@@ -74,6 +72,7 @@ public class LogIn extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         Log.d(LOG_TAG, "onStart");
+
     }
 
     @Override
@@ -89,11 +88,15 @@ public class LogIn extends AppCompatActivity {
 
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
+
+
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                Toast.makeText(LogIn.this, "WRONG WAY", Toast.LENGTH_SHORT).show();
+
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null){
-                    Toast.makeText(LogIn.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LogIn.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent home = new Intent(LogIn.this, SecondActivity.class);
                     startActivity(home);
                 } else{
@@ -101,17 +104,7 @@ public class LogIn extends AppCompatActivity {
                 }
             }
         };
-        // progressBar = (ProgressBar)findViewById(R.id.progressLog);
-        //mReplyHeadTextView=findViewById(R.id.text_header_reply);
-        //mReplyTextView=findViewById(R.id.text_message_reply);
-        /*if (savedInstanceState!=null){
-            boolean isVisible = savedInstanceState.getBoolean("reply_visible");
-            if (isVisible){
-                mReplyHeadTextView.setVisibility((View.VISIBLE));
-                mReplyTextView.setText(savedInstanceState.getString("reply_text"));
-                mReplyTextView.setVisibility(View.VISIBLE);
-            }
-        }*/
+
         Log.d(LOG_TAG, "-------");
         Log.d(LOG_TAG, "onCreate");
 
@@ -119,6 +112,7 @@ public class LogIn extends AppCompatActivity {
 
 
     public void LogInActivity(View view) {
+        Toast.makeText(LogIn.this, "I got here", Toast.LENGTH_SHORT).show();
 
 
         String email = etEmail.getText().toString();
@@ -137,9 +131,11 @@ public class LogIn extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
                         Toast.makeText(LogIn.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
                     } else{
                         Intent dashboard = new Intent(LogIn.this, SecondActivity.class);
                         startActivity(dashboard);
+                        firebaseAuth.addAuthStateListener(authStateListener);
                     }
                 }
             });
