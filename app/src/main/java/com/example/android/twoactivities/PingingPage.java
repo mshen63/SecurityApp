@@ -11,4 +11,6 @@ public class PingingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pinging_page);
     }
+
+
 }
