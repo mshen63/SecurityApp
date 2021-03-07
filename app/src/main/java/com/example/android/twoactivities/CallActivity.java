@@ -135,50 +135,50 @@ public class CallActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("user_collection").document(name);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        GeoPoint point = document.getGeoPoint("location");
-                         lat = point.getLatitude();
-                         lng = point.getLongitude();
-                    } else {
-                        Log.d("DATABASE", "No such document");
-                    }
-                } else {
-                    Log.d("DATABASE", "get failed with ", task.getException());
-                }
-            }
-        });
-        db.collection("user_collection")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(!document.getData().get("name").toString().equals(name)){
-                                    GeoPoint point = document.getGeoPoint("location");
-                                    double lat2 = point.getLatitude();
-                                    double lng2 = point.getLongitude();
-                                    double dist = distance(lat, lng, lat2, lng2);
-                                    if(dist <= 0.5){
-                                        candidates.put(document.getData().get("name").toString(), dist);
-                                        Log.d("DATABASE", candidates.toString());
-                                    }
-
-                                }
-
-                            }
-                        } else {
-                            Log.d("DATABASE", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        DocumentReference docRef = db.collection("user_collection").document(name);
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        GeoPoint point = document.getGeoPoint("location");
+//                         lat = point.getLatitude();
+//                         lng = point.getLongitude();
+//                    } else {
+//                        Log.d("DATABASE", "No such document");
+//                    }
+//                } else {
+//                    Log.d("DATABASE", "get failed with ", task.getException());
+//                }
+//            }
+//        });
+//        db.collection("user_collection")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                if(!document.getData().get("name").toString().equals(name)){
+//                                    GeoPoint point = document.getGeoPoint("location");
+//                                    double lat2 = point.getLatitude();
+//                                    double lng2 = point.getLongitude();
+//                                    double dist = distance(lat, lng, lat2, lng2);
+//                                    if(dist <= 0.5){
+//                                        candidates.put(document.getData().get("name").toString(), dist);
+//                                        Log.d("DATABASE", candidates.toString());
+//                                    }
+//
+//                                }
+//
+//                            }
+//                        } else {
+//                            Log.d("DATABASE", "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
 
 
         createNotificationChannel();
@@ -277,7 +277,7 @@ public class CallActivity extends AppCompatActivity {
 //            r.play();
             Log.d("DEBUG", callClient.toString());
             Log.d("DEBUG", incomingCall.toString());
-            sendNotification();
+//            sendNotification();
 
             call = incomingCall;
             button.setText("Accept Incoming Call");

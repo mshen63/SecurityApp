@@ -92,7 +92,7 @@ public class LogIn extends AppCompatActivity {
 
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                Toast.makeText(LogIn.this, "WRONG WAY", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LogIn.this, "WRONG WAY", Toast.LENGTH_SHORT).show();
 
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null){
@@ -112,7 +112,7 @@ public class LogIn extends AppCompatActivity {
 
 
     public void LogInActivity(View view) {
-        Toast.makeText(LogIn.this, "I got here", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(LogIn.this, "I got here", Toast.LENGTH_SHORT).show();
 
 
         String email = etEmail.getText().toString();
