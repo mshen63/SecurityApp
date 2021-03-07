@@ -100,8 +100,8 @@ public class CallActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
 
-    private static final String APP_KEY = "133ed0e4-4d34-423c-8d15-330825736eee";
-    private static final String APP_SECRET = "4X4yoBpjO0GIyYw9moOh3w==";
+    private static final String APP_KEY;
+    private static final String APP_SECRET;
     private static final String ENVIRONMENT = "clientapi.sinch.com";
 
     private Call call;
@@ -135,64 +135,64 @@ public class CallActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        DocumentReference docRef = db.collection("user_collection").document(name);
-//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        GeoPoint point = document.getGeoPoint("location");
-//                         lat = point.getLatitude();
-//                         lng = point.getLongitude();
-//                    } else {
-//                        Log.d("DATABASE", "No such document");
-//                    }
-//                } else {
-//                    Log.d("DATABASE", "get failed with ", task.getException());
-//                }
-//            }
-//        });
-//        db.collection("user_collection")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                if(!document.getData().get("name").toString().equals(name)){
-//                                    GeoPoint point = document.getGeoPoint("location");
-//                                    double lat2 = point.getLatitude();
-//                                    double lng2 = point.getLongitude();
-//                                    double dist = distance(lat, lng, lat2, lng2);
-//                                    if(dist <= 0.5){
-//                                        candidates.put(document.getData().get("name").toString(), dist);
-//                                        Log.d("DATABASE", candidates.toString());
-//                                    }
-//
-//                                }
-//
-//                            }
-//                        } else {
-//                            Log.d("DATABASE", "Error getting documents: ", task.getException());
-//                        }
-//                    }
-//                });
+       FirebaseFirestore db = FirebaseFirestore.getInstance();
+       DocumentReference docRef = db.collection("user_collection").document(name);
+       docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+           @Override
+           public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+               if (task.isSuccessful()) {
+                   DocumentSnapshot document = task.getResult();
+                   if (document.exists()) {
+                       GeoPoint point = document.getGeoPoint("location");
+                        lat = point.getLatitude();
+                        lng = point.getLongitude();
+                   } else {
+                       Log.d("DATABASE", "No such document");
+                   }
+               } else {
+                   Log.d("DATABASE", "get failed with ", task.getException());
+               }
+           }
+       });
+       db.collection("user_collection")
+               .get()
+               .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                   @Override
+                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                       if (task.isSuccessful()) {
+                           for (QueryDocumentSnapshot document : task.getResult()) {
+                               if(!document.getData().get("name").toString().equals(name)){
+                                   GeoPoint point = document.getGeoPoint("location");
+                                   double lat2 = point.getLatitude();
+                                   double lng2 = point.getLongitude();
+                                   double dist = distance(lat, lng, lat2, lng2);
+                                   if(dist <= 0.5){
+                                       candidates.put(document.getData().get("name").toString(), dist);
+                                       Log.d("DATABASE", candidates.toString());
+                                   }
+
+                               }
+
+                           }
+                       } else {
+                           Log.d("DATABASE", "Error getting documents: ", task.getException());
+                       }
+                   }
+               });
 
 
         createNotificationChannel();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.call);
 
-//        Intent intent = getIntent();
-//        callerId = intent.getStringExtra("callerId");
-//        recipientId = intent.getStringExtra("recipientId");
-        callerId = "b";
-        recipientId = "a";
+       Intent intent = getIntent();
+       callerId = intent.getStringExtra("callerId");
+       recipientId = intent.getStringExtra("recipientId");
+//         callerId = "b";
+//         recipientId = "a";
         profilePico = findViewById(R.id.profilePic);
         nameCallerDisplay = findViewById(R.id.nameCallerDisplay);
-        recipient_name = "Bob";
+//         recipient_name = "Bob";
 
         sinchClient = Sinch.getSinchClientBuilder()
                 .context(this)
