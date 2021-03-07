@@ -3,6 +3,15 @@
     package="com.example.android.twoactivities">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +28,8 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".PingingPage" />
         <activity android:name=".SignUpActivity" />
+        <activity android:name=".CallActivity" />
+
         <activity
             android:name=".SecondActivity"
             android:label="@string/activity2_name"

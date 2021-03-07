@@ -164,9 +164,10 @@ public class SignUpActivity extends AppCompatActivity {
             user.put("password", password);
 
 // Add a new document with a generated ID
-            db.collection("user_collection")
-                    .add(user)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            db.collection("user_collection").document(name).set(user);
+
+
+                   /* .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Toast.makeText(SignUpActivity.this,"DBYes!", Toast.LENGTH_SHORT).show();
@@ -177,8 +178,7 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(SignUpActivity.this,"DBNo!", Toast.LENGTH_SHORT).show();
                         }
-
-                        });
+                        });*/
 
 
 

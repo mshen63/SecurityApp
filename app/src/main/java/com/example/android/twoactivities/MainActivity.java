@@ -117,6 +117,11 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         Log.d(LOG_TAG, "-------");
         Log.d(LOG_TAG, "onCreate");
+        if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{android.Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE},
+                    1);
+        }
 
     }
 

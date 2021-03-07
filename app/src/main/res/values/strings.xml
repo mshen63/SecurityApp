@@ -23,4 +23,6 @@
     <string name="title">Security App</string>
     <string name="name">Name</string>
     <string name="sign_up_title">Sign Up</string>
+    <string name="channel_name">Channel1</string>
+    <string name="channel_description">Incoming Call</string>
 </resources>

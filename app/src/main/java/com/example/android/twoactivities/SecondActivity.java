@@ -457,7 +457,10 @@ public class SecondActivity extends AppCompatActivity implements LocationListene
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d(LOG_TAG, "Button clicked!");
-                        Intent intent=new Intent(SecondActivity.this, PingingPage.class);
+                        Intent intent=new Intent(SecondActivity.this, CallActivity.class);
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        String name = user.getDisplayName();
+                        intent.putExtra("name", name);
                         startActivity(intent);
                     }
                 });
