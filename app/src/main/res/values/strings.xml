@@ -20,7 +20,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="title">Security App</string>
+    <string name="title">On My Way</string>
     <string name="name">Name</string>
     <string name="sign_up_title">Sign Up</string>
     <string name="channel_name">Channel1</string>

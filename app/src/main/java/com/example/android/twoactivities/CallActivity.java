@@ -1,5 +1,6 @@
 package com.example.android.twoactivities;
 
+import android.widget.ImageView;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -86,13 +87,15 @@ public class CallActivity extends AppCompatActivity {
     DatabaseReference users;
 
     private EditText usernames;
+    private TextView nameCallerDisplay;
+    private String recipient_name;
 
     private EditText emails;
 
     private EditText passwords;
 
     private EditText names;
-
+    private ImageView profilePico;
     ImageButton btnRegister;
 
     FirebaseAuth firebaseAuth;
@@ -129,20 +132,7 @@ public class CallActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Use the application default credentials
-//        GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
-//        FirebaseOptions.Builder builder = FirebaseOptions.builder();
-//        FirebaseOptions options =  FirebaseOptions.builder()
-//                .setCredentials(credentials)
-//                .setProjectId("security-app-ec1c8")
-//                .build();
-//        FirebaseApp.initializeApp(options);
-//        FirebaseOptions options = FirebaseOptions.builder()
-//                .setCredentials(GoogleCredentials.getApplicationDefault())
-//                .setDatabaseUrl("https://<DATABASE_NAME>.firebaseio.com/")
-//                .build();
 
-//        FirebaseApp.initializeApp(options);
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -176,8 +166,11 @@ public class CallActivity extends AppCompatActivity {
                                     double lat2 = point.getLatitude();
                                     double lng2 = point.getLongitude();
                                     double dist = distance(lat, lng, lat2, lng2);
-                                    candidates.put(document.getData().get("name").toString(), dist);
-                                    Log.d("DATABASE", candidates.toString());
+                                    if(dist <= 0.5){
+                                        candidates.put(document.getData().get("name").toString(), dist);
+                                        Log.d("DATABASE", candidates.toString());
+                                    }
+
                                 }
 
                             }
@@ -195,8 +188,11 @@ public class CallActivity extends AppCompatActivity {
 //        Intent intent = getIntent();
 //        callerId = intent.getStringExtra("callerId");
 //        recipientId = intent.getStringExtra("recipientId");
-        callerId = "a";
-        recipientId = "b";
+        callerId = "b";
+        recipientId = "a";
+        profilePico = findViewById(R.id.profilePic);
+        nameCallerDisplay = findViewById(R.id.nameCallerDisplay);
+        recipient_name = "Bob";
 
         sinchClient = Sinch.getSinchClientBuilder()
                 .context(this)
@@ -233,7 +229,10 @@ public class CallActivity extends AppCompatActivity {
                     call.addCallListener(new SinchCallListener());
                     button.setText("Hang Up");
                 } else {
+                    profilePico.setVisibility(View.INVISIBLE);
                     call.hangup();
+                    nameCallerDisplay.setText("Call ended.");
+
                 }
             }
         });
@@ -242,6 +241,8 @@ public class CallActivity extends AppCompatActivity {
     private class SinchCallListener implements CallListener {
         @Override
         public void onCallEnded(Call endedCall) {
+            profilePico.setVisibility(View.INVISIBLE);
+            nameCallerDisplay.setText("Call ended.");
             call = null;
             SinchError a = endedCall.getDetails().getError();
             button.setText("Call");
@@ -251,6 +252,8 @@ public class CallActivity extends AppCompatActivity {
 
         @Override
         public void onCallEstablished(Call establishedCall) {
+            profilePico.setVisibility(View.VISIBLE);
+            nameCallerDisplay.setText("Calling " + recipient_name);
             callState.setText("connected");
             setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
         }
@@ -277,8 +280,9 @@ public class CallActivity extends AppCompatActivity {
             sendNotification();
 
             call = incomingCall;
-            Toast.makeText(CallActivity.this, "incoming call", Toast.LENGTH_SHORT).show();
             button.setText("Accept Incoming Call");
+            profilePico.setVisibility(View.VISIBLE);
+            nameCallerDisplay.setText("Call from " + recipient_name);
 
             Runnable delayedDecline = new Runnable() {
                 @Override
@@ -305,7 +309,7 @@ public class CallActivity extends AppCompatActivity {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "call")
                 .setSmallIcon(R.drawable.icon)
-                .setContentTitle("INCOMING CALL")
+                .setContentTitle("CALL FOR HELP")
                 .setContentText("Call for help from someone nearby")
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setPriority(Notification.PRIORITY_MAX)

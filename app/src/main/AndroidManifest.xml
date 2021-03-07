@@ -30,6 +30,7 @@
         <activity android:name=".PingingPage" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".CallActivity" />
+        <activity android:name=".MapsActivity" />
 
         <activity
             android:name=".SecondActivity"

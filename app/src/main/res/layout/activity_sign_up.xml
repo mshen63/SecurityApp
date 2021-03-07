@@ -50,16 +50,16 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="51dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
         android:layout_marginTop="272dp"
-        android:layout_marginEnd="316dp"
-        android:layout_marginRight="316dp"
         android:fontFamily="@font/raleway_light"
         android:text="@string/prompt_email"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -74,16 +74,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="89dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
         android:layout_marginTop="368dp"
-        android:layout_marginEnd="276dp"
-        android:layout_marginRight="276dp"
         android:fontFamily="@font/raleway_light"
         android:text="@string/editText_password"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -100,21 +100,20 @@
     <ImageButton
         android:id="@+id/button_main"
 
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
 
         android:layout_height="48dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
         android:layout_marginTop="488dp"
-        android:layout_marginEnd="252dp"
-        android:layout_marginRight="252dp"
         android:background="@color/transparent"
         android:clickable="true"
         android:gravity="center"
         android:onClick="SignUserUp"
         android:src="@drawable/sign_up_button"
         android:text="@string/button_sign_up"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

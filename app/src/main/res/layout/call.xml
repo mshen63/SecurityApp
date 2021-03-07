@@ -1,29 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/general_background"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.android.twoactivities.CallActivity">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/callState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
-        android:layout_above="@+id/button"
-        android:layout_marginBottom="30dp"/>
+        android:fontFamily="@font/raleway_light"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Call"
         android:id="@+id/button"
-        android:background="@color/purple_200"
-        android:textColor="@color/white"
-        android:layout_centerVertical="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-</RelativeLayout>
+        android:layout_marginTop="372dp"
+        android:background="@drawable/call_button"
+        android:fontFamily="@font/raleway_light"
+        android:gravity="center"
+        android:text="Call"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:backgroundTint="#020202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profilePic"
+        android:visibility="invisible"
+        android:layout_width="215dp"
+        android:layout_height="219dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginRight="107dp"
+        android:src="@drawable/profile_pic_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginRight="107dp"
+        android:fontFamily="@font/raleway_light"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:id="@+id/nameCallerDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePic" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

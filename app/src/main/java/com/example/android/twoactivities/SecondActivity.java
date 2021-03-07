@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.CompoundButton;
+import android.net.Uri;
 
 
 import android.content.Intent;
@@ -62,6 +63,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.app.AlertDialog;
@@ -98,7 +100,7 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 import java.util.ArrayList;
@@ -258,7 +260,7 @@ public class SecondActivity extends AppCompatActivity implements LocationListene
                     Location location = task.getResult();
                     if (location!=null) {
                         GeoPoint geoPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
-                        Toast.makeText(SecondActivity.this, "latitude:" + location.getLatitude() + " longitude:" + location.getLongitude(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SecondActivity.this, "latitude:" + location.getLatitude() + " longitude:" + location.getLongitude(), Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onComplete: latitude: " + geoPoint.getLatitude());
                         Log.d(TAG, "onComplete: longitude: " + geoPoint.getLongitude());
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -414,6 +416,37 @@ public class SecondActivity extends AppCompatActivity implements LocationListene
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationManager = (LocationManager)  this.getSystemService(Context.LOCATION_SERVICE);
 
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        String name = user.getDisplayName();
+                        DocumentReference user_reference = db.collection("user_collection").document(name);
+                        user_reference
+                                .update("device", token)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error updating document", e);
+                                    }
+                                });
+//                        Toast.makeText(SecondActivity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         Log.d(LOG_TAG, "-------");
         Log.d(LOG_TAG, "onCreate");
@@ -482,6 +515,31 @@ public class SecondActivity extends AppCompatActivity implements LocationListene
         startActivity(new Intent(SecondActivity.this, MainActivity.class));
 
     }
+//    @Override
+    public void onNewToken(String token) {
+        Log.d(TAG, "Refreshed token: " + token);
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String name = user.getDisplayName();
+        DocumentReference user_reference = db.collection("user_collection").document(name);
+        user_reference
+                .update("device", token)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+
+
+
 
 }
 
