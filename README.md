@@ -1,5 +1,5 @@
 # On My Way
-![home screen](https://github.com/mshen63/SecurityApp/appImages/home.png) ![help screen](https://github.com/mshen63/SecurityApp/appImages/help.png) ![accept caller](https://github.com/mshen63/SecurityApp/appImages/accept.png) ![connected](https://github.com/mshen63/SecurityApp/appImages/connected.png)
+![home screen](/appImages/home.png) ![help screen](/appImages/help.png) ![accept caller](/appImages/accept.png) ![connected](/appImages/connected.png)
 
 ## Inspiration
 As college students navigating a bustling metro cityscape, we frequently encountered dangerous situations where we wished we had a friend come to our aid. If only there was a way to notify nearby students in order to request and receive help within minutes. We designed On My Way to address these concerns and provide a way for victims to contact their peers in a safe and efficient manner.
